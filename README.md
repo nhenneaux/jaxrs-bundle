@@ -3,4 +3,4 @@ JAX-RS server (Jersey implementation) using Jetty Servlet implementation support
 
 It uses a client connector supporting HTTP/1 and HTTP/2 [Jersey Java HTTP client connector](https://github.com/nhenneaux/jersey-httpclient-connector).
 
-![Build Status](https://github.com/nhenneaux/jaxrs-bundle/workflows/Java%20CI/badge.svg)
+[![Build Status](https://github.com/nhenneaux/jaxrs-bundle/workflows/Java%20CI/badge.svg)](https://github.com/nhenneaux/jaxrs-bundle/actions?query=workflow%3A%22Java+CI%22)
