@@ -1,6 +1,7 @@
 package com.github.nhenneaux.jersey.bundle;
 
 import com.github.nhenneaux.jersey.connector.httpclient.HttpClientConnector;
+import jakarta.ws.rs.HttpMethod;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.Timeout;
 import java.net.http.HttpClient;
 import java.security.KeyStore;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -44,7 +46,11 @@ class JettyServerTest {
     }
 
     static WebTarget getClient(int port) {
-        return getClient(port, getKeyStore("jks-password".toCharArray(), "truststore.jks"), http2ClientConfig());
+        return getClient(port, trustStore(), http2ClientConfig());
+    }
+
+    private static KeyStore trustStore() {
+        return getKeyStore("jks-password".toCharArray(), "truststore.p12");
     }
 
     static JettyServer.TlsSecurityConfiguration tlsConfig() {
@@ -91,20 +97,31 @@ class JettyServerTest {
 
     @Test
     @Timeout(60)
+    void testConcurrentGetHttp2JavaHttpClient() throws Exception {
+        testConcurrent(new ClientConfig()
+                .connectorProvider((jaxRsClient, configuration) -> getHttpClientConnector(jaxRsClient, HttpClient.Version.HTTP_2)), HttpMethod.GET, "/pingWithSleep");
+    }
+
+    @Test
+    @Timeout(60)
     void testConcurrentHttp1JavaHttpClient() throws Exception {
         testConcurrent(new ClientConfig()
                 .connectorProvider((jaxRsClient, configuration) -> getHttpClientConnector(jaxRsClient, HttpClient.Version.HTTP_1_1)));
     }
 
-    private HttpClientConnector getHttpClientConnector(Client jaxRsClient, HttpClient.Version http11) {
-        return new HttpClientConnector(HttpClient.newBuilder().sslContext(jaxRsClient.getSslContext()).version(http11).build());
+    private HttpClientConnector getHttpClientConnector(Client jaxRsClient, HttpClient.Version version) {
+        return new HttpClientConnector(HttpClient.newBuilder().sslContext(jaxRsClient.getSslContext()).version(version).build());
     }
 
 
     private void testConcurrent(ClientConfig clientConfig) throws Exception {
+        testConcurrent(clientConfig, "HEAD", PING);
+    }
+
+    private void testConcurrent(ClientConfig clientConfig, String method, String path) throws Exception {
         int port = PORT;
         JettyServer.TlsSecurityConfiguration tlsSecurityConfiguration = tlsConfig();
-        final KeyStore truststore = getKeyStore("jks-password".toCharArray(), "truststore.jks");
+        final KeyStore truststore = trustStore();
         try (AutoCloseable ignored = jerseyServer(
                 port,
                 tlsSecurityConfiguration,
@@ -112,17 +129,24 @@ class JettyServerTest {
             final int nThreads = 4;
             final int iterations = 10_000;
             // Warmup
-            getClient(port, truststore, clientConfig).path(PING).request().head().close();
+            Client client = ClientBuilder.newBuilder()
+                    .trustStore(truststore)
+                    .withConfig(clientConfig)
+                    .build();
+            client.target("https://localhost:" + port).path(path).request().method(method).close();
 
-            final WebTarget client = getClient(port, truststore, clientConfig);
             AtomicInteger counter = new AtomicInteger();
             final Runnable runnable = () -> {
-                final long start = System.currentTimeMillis();
+                long start = System.nanoTime();
                 for (int i = 0; i < iterations; i++) {
-                    try (Response ignoredResponse = client.path(PING).request().head()) {
+                    try (Response response = client
+                            .target("https://localhost:" + port).path(path).request().method(method)) {
+                        response.getStatus();
                         counter.incrementAndGet();
-                        if (i % 1_000 == 0) {
-                            System.out.println((System.currentTimeMillis() - start) * 1.0 / Math.max(i, 1));
+                        int reportEveryRequests = 1_000;
+                        if (i % reportEveryRequests == 0) {
+                            System.out.println(TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start) * 1.0 / reportEveryRequests);
+                            start = System.nanoTime();
                         }
                     }
                 }
