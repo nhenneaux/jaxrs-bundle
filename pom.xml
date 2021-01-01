@@ -69,6 +69,13 @@
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-jetty-servlet</artifactId>
             <version>${jersey.version}</version>
+
+            <exclusions>
+                <exclusion>
+                    <artifactId>osgi-resource-locator</artifactId>
+                    <groupId>org.glassfish.hk2</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
