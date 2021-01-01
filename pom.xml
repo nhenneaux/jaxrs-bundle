@@ -6,7 +6,7 @@
 
     <groupId>com.github.nhenneaux.jersey.bundle</groupId>
     <version>0.0.1-SNAPSHOT</version>
-    <artifactId>jersey-bundle</artifactId>
+    <artifactId>jaxrs-bundle</artifactId>
 
     <name>Bundle of a Jersey client and server using HTTP/1 and HTTP/2</name>
     <description>JAX-RS server (Jersey implementation) using Jetty Servlet implementation supporting both HTTP/1 and
@@ -145,7 +145,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.github.nhenneaux.jersey.bundle.Bootstrap</mainClass>
+                                    <mainClass>com.github.nhenneaux.jaxrs.bundle.Bootstrap</mainClass>
                                 </transformer>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
@@ -289,7 +289,7 @@
         </pluginManagement>
     </build>
 
-    <url>https://github.com/nhenneaux/jersey-bundle</url>
+    <url>https://github.com/nhenneaux/jaxrs-bundle</url>
 
     <licenses>
         <license>
@@ -300,8 +300,8 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:ssh://git@github.com:nhenneaux/jersey-bundle.git</connection>
-        <url>https://github.com/nhenneaux/jersey-bundle</url>
+        <connection>scm:git:ssh://git@github.com:nhenneaux/jaxrs-bundle.git</connection>
+        <url>https://github.com/nhenneaux/jaxrs-bundle</url>
         <tag>HEAD</tag>
     </scm>
 

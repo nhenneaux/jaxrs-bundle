@@ -1,4 +1,4 @@
-package com.github.nhenneaux.jersey.bundle;
+package com.github.nhenneaux.jaxrs.bundle;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.HEAD;

@@ -1,4 +1,4 @@
-package com.github.nhenneaux.jersey.bundle;
+package com.github.nhenneaux.jaxrs.bundle;
 
 import org.eclipse.jetty.alpn.server.ALPNServerConnectionFactory;
 import org.eclipse.jetty.http.HttpVersion;

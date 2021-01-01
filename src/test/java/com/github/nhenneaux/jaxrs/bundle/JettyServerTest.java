@@ -1,4 +1,4 @@
-package com.github.nhenneaux.jersey.bundle;
+package com.github.nhenneaux.jaxrs.bundle;
 
 import com.github.nhenneaux.jersey.connector.httpclient.HttpClientConnector;
 import jakarta.ws.rs.HttpMethod;
@@ -20,7 +20,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static com.github.nhenneaux.jersey.bundle.JettyServer.TlsSecurityConfiguration.getKeyStore;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SuppressWarnings("squid:S00112")
@@ -50,12 +49,12 @@ class JettyServerTest {
     }
 
     private static KeyStore trustStore() {
-        return getKeyStore("jks-password".toCharArray(), "truststore.p12");
+        return JettyServer.TlsSecurityConfiguration.getKeyStore("jks-password".toCharArray(), "truststore.p12");
     }
 
     static JettyServer.TlsSecurityConfiguration tlsConfig() {
         return new JettyServer.TlsSecurityConfiguration(
-                getKeyStore("TEST==ONLY==jks-keystore-password".toCharArray(), "keystore.p12"),
+                JettyServer.TlsSecurityConfiguration.getKeyStore("TEST==ONLY==jks-keystore-password".toCharArray(), "keystore.p12"),
                 "server",
                 "TEST==ONLY==jks-keystore-password",
                 "TLSv1.2"
