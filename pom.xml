@@ -32,7 +32,7 @@
         <jetty.version>11.0.0</jetty.version>
         <jakarta.xml.version>3.0.0</jakarta.xml.version>
         <weld-se-core.version>4.0.0.Final</weld-se-core.version>
-        <jersey-httpclient-connector.version>1.0.1</jersey-httpclient-connector.version>
+        <jersey-httpclient-connector.version>1.0.2</jersey-httpclient-connector.version>
     </properties>
 
 
