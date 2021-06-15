@@ -57,7 +57,7 @@ class JettyServerTest {
                 JettyServer.TlsSecurityConfiguration.getKeyStore("TEST==ONLY==key-store-password".toCharArray(), "keystore.p12"),
                 "localhost with alternate ip",
                 "TEST==ONLY==key-store-password",
-                "TLSv1.2"
+                "TLSv1.3"
         );
     }
 
