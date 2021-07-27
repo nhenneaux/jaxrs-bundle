@@ -29,9 +29,9 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
         <jersey.version>3.0.2</jersey.version>
-        <jetty.version>11.0.5</jetty.version>
+        <jetty.version>11.0.6</jetty.version>
         <jakarta.xml.version>3.0.0</jakarta.xml.version>
-        <weld-se-core.version>4.0.1.SP1</weld-se-core.version>
+        <weld-se-core.version>4.0.2.Final</weld-se-core.version>
         <jersey-httpclient-connector.version>1.0.9</jersey-httpclient-connector.version>
     </properties>
 
