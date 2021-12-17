@@ -29,10 +29,10 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
         <jersey.version>3.0.3</jersey.version>
-        <jetty.version>11.0.6</jetty.version>
-        <jakarta.xml.version>3.0.0</jakarta.xml.version>
+        <jetty.version>11.0.7</jetty.version>
+        <jakarta.xml.version>3.0.1</jakarta.xml.version>
         <weld-se-core.version>4.0.2.Final</weld-se-core.version>
-        <jersey-httpclient-connector.version>1.0.10</jersey-httpclient-connector.version>
+        <jersey-httpclient-connector.version>1.0.12</jersey-httpclient-connector.version>
     </properties>
 
 
@@ -86,12 +86,12 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.30</version>
+            <version>1.7.32</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.14.0</version>
+            <version>2.16.0</version>
             <exclusions>
                 <exclusion>
                     <groupId>junit</groupId>
@@ -109,20 +109,20 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.7.1</version>
+            <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.awaitility</groupId>
             <artifactId>awaitility</artifactId>
-            <version>4.0.3</version>
+            <version>4.1.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>3.8.0</version>
+            <version>4.1.0</version>
             <scope>test</scope>
         </dependency>
 
