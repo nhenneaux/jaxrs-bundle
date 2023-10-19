@@ -157,6 +157,7 @@ class JettyServerTest {
                         }
                     } catch (ProcessingException e) {
                         if (e.getMessage().contains("GOAWAY")
+                                || e.getMessage().contains("Broken pipe") //  The HTTP sending process failed with error, Broken pipe
                                 || e.getMessage().contains(" cancelled")) {//  The HTTP sending process failed with error, Stream 673 cancelled
                             i--;
                         } else {
