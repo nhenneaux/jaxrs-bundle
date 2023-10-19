@@ -2,6 +2,7 @@ package com.github.nhenneaux.jaxrs.bundle;
 
 import com.github.nhenneaux.jersey.connector.httpclient.HttpClientConnector;
 import jakarta.ws.rs.HttpMethod;
+import jakarta.ws.rs.ProcessingException;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
@@ -103,6 +104,13 @@ class JettyServerTest {
 
     @Test
     @Timeout(60)
+    void testConcurrentGetDefaultJavaHttpClient() throws Exception {
+        testConcurrent(new ClientConfig()
+                .connectorProvider(HttpClientConnector::new), HttpMethod.GET, "/pingWithSleep");
+    }
+
+    @Test
+    @Timeout(60)
     void testConcurrentHttp1JavaHttpClient() throws Exception {
         testConcurrent(new ClientConfig()
                 .connectorProvider((jaxRsClient, configuration) -> getHttpClientConnector(jaxRsClient, HttpClient.Version.HTTP_1_1)));
@@ -146,6 +154,13 @@ class JettyServerTest {
                         if (i % reportEveryRequests == 0) {
                             System.out.println(TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start) * 1.0 / reportEveryRequests);
                             start = System.nanoTime();
+                        }
+                    } catch (ProcessingException e) {
+                        if (e.getMessage().contains("GOAWAY")
+                                || e.getMessage().contains(" cancelled")) {//  The HTTP sending process failed with error, Stream 673 cancelled
+                            i--;
+                        } else {
+                            throw e;
                         }
                     }
                 }

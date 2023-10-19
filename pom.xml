@@ -70,7 +70,7 @@
                     <groupId>org.glassfish.hk2</groupId>
                 </exclusion>
                 <exclusion>
-                    <groupId>org.eclipse.jetty.*</groupId>
+                    <groupId>org.eclipse.jetty*</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
