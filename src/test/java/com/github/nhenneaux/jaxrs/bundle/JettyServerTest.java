@@ -2,6 +2,7 @@ package com.github.nhenneaux.jaxrs.bundle;
 
 import com.github.nhenneaux.jersey.connector.httpclient.HttpClientConnector;
 import jakarta.ws.rs.HttpMethod;
+import jakarta.ws.rs.ProcessingException;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
@@ -103,6 +104,13 @@ class JettyServerTest {
 
     @Test
     @Timeout(60)
+    void testConcurrentGetDefaultJavaHttpClient() throws Exception {
+        testConcurrent(new ClientConfig()
+                .connectorProvider(HttpClientConnector::new), HttpMethod.GET, "/pingWithSleep");
+    }
+
+    @Test
+    @Timeout(60)
     void testConcurrentHttp1JavaHttpClient() throws Exception {
         testConcurrent(new ClientConfig()
                 .connectorProvider((jaxRsClient, configuration) -> getHttpClientConnector(jaxRsClient, HttpClient.Version.HTTP_1_1)));
@@ -132,20 +140,28 @@ class JettyServerTest {
                     .trustStore(truststore)
                     .withConfig(clientConfig)
                     .build();
-            client.target("https://localhost:" + port).path(path).request().method(method).close();
+            final var webTarget = client.target("https://localhost:" + port).path(path);
+            webTarget.request().method(method).close();
 
             AtomicInteger counter = new AtomicInteger();
             final Runnable runnable = () -> {
                 long start = System.nanoTime();
                 for (int i = 0; i < iterations; i++) {
-                    try (Response response = client
-                            .target("https://localhost:" + port).path(path).request().method(method)) {
+                    try (Response response = webTarget.request().method(method)) {
                         response.getStatus();
                         counter.incrementAndGet();
                         int reportEveryRequests = 1_000;
                         if (i % reportEveryRequests == 0) {
                             System.out.println(TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start) * 1.0 / reportEveryRequests);
                             start = System.nanoTime();
+                        }
+                    } catch (ProcessingException e) {
+                        if (e.getMessage().contains("GOAWAY")
+                                || e.getMessage().contains("Broken pipe") //  The HTTP sending process failed with error, Broken pipe
+                                || e.getMessage().contains(" cancelled")) {//  The HTTP sending process failed with error, Stream 673 cancelled
+                            i--;
+                        } else {
+                            throw e;
                         }
                     }
                 }
