@@ -140,14 +140,14 @@ class JettyServerTest {
                     .trustStore(truststore)
                     .withConfig(clientConfig)
                     .build();
-            client.target("https://localhost:" + port).path(path).request().method(method).close();
+            final var webTarget = client.target("https://localhost:" + port).path(path);
+            webTarget.request().method(method).close();
 
             AtomicInteger counter = new AtomicInteger();
             final Runnable runnable = () -> {
                 long start = System.nanoTime();
                 for (int i = 0; i < iterations; i++) {
-                    try (Response response = client
-                            .target("https://localhost:" + port).path(path).request().method(method)) {
+                    try (Response response = webTarget.request().method(method)) {
                         response.getStatus();
                         counter.incrementAndGet();
                         int reportEveryRequests = 1_000;
