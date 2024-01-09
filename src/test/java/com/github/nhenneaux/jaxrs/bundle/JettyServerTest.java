@@ -219,9 +219,10 @@ class JettyServerTest {
         for (int i = 0; i < 100; i++) {
             try (
                     @SuppressWarnings("unused") WeldContainer container = new Weld().initialize();
-                    AutoCloseable ignored = jerseyServer(port, tlsSecurityConfiguration, DummyRestService.class)
+                    AutoCloseable ignored = jerseyServer(port, tlsSecurityConfiguration, DummyRestService.class);
+                    final var head = getClient(port).path(PING).request().head()
             ) {
-                assertEquals(204, getClient(port).path(PING).request().head().getStatus());
+                assertEquals(204, head.getStatus());
             }
         }
     }
