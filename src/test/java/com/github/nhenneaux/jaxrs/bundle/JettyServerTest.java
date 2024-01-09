@@ -8,25 +8,44 @@ import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Response;
 import org.glassfish.jersey.client.ClientConfig;
+import org.hamcrest.Matchers;
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.api.*;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.http.HttpClient;
 import java.security.KeyStore;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SuppressWarnings("squid:S00112")
 class JettyServerTest {
     static final int PORT = 2223;
     private static final String PING = "/ping";
+
+    @BeforeEach
+    void setUp(TestInfo testInfo) {
+        var testClass = testInfo.getTestClass().orElseThrow();
+        var testMethod = testInfo.getTestMethod().orElseThrow();
+        System.out.println(testClass.getSimpleName() + "::" + testMethod.getName() + " test has started.");
+    }
+
+    @AfterEach
+    void tearDown(TestInfo testInfo) {
+        var testClass = testInfo.getTestClass().orElseThrow();
+        var testMethod = testInfo.getTestMethod().orElseThrow();
+        System.out.println(testClass.getSimpleName() + "::" + testMethod.getName() + " test has finished.");
+    }
 
     private static WebTarget getClient(int port, KeyStore trustStore, ClientConfig clientConfig) {
         return ClientBuilder.newBuilder()
@@ -148,6 +167,8 @@ class JettyServerTest {
                 long start = System.nanoTime();
                 for (int i = 0; i < iterations; i++) {
                     try (Response response = webTarget.request().method(method)) {
+
+                        response.readEntity(InputStream.class).readAllBytes();
                         response.getStatus();
                         counter.incrementAndGet();
                         int reportEveryRequests = 1_000;
@@ -155,18 +176,23 @@ class JettyServerTest {
                             System.out.println(TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start) * 1.0 / reportEveryRequests);
                             start = System.nanoTime();
                         }
-                    } catch (ProcessingException e) {
+                    } catch (ProcessingException | IOException e) {
                         if (e.getMessage().contains("GOAWAY")
                                 || e.getMessage().contains("Broken pipe") //  The HTTP sending process failed with error, Broken pipe
+                                || e.getMessage().contains("EOF reached while reading")
                                 || e.getMessage().contains(" cancelled")) {//  The HTTP sending process failed with error, Stream 673 cancelled
                             i--;
                         } else {
-                            throw e;
+                            throw new IllegalStateException(e);
                         }
                     }
                 }
             };
-            Thread.setDefaultUncaughtExceptionHandler((t1, e) -> e.printStackTrace());
+            List<Throwable> thrown = new ArrayList<>();
+            Thread.setDefaultUncaughtExceptionHandler((t1, e) -> {
+                thrown.add(e);
+                e.printStackTrace();
+            });
             final Set<Thread> threads = IntStream
                     .range(0, nThreads)
                     .mapToObj(i -> runnable)
@@ -180,6 +206,7 @@ class JettyServerTest {
                 thread.join();
             }
 
+            assertThat(thrown, Matchers.empty());
             assertEquals((long) nThreads * iterations, counter.get());
 
         }
