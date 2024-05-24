@@ -103,8 +103,9 @@ class JettyServerTest {
 
     @Test
     @Timeout(60)
-    void testConcurrentHttp1() throws Exception {
-        testConcurrent(new ClientConfig());
+    void testConcurrentHttp1JavaHttpClient() throws Exception {
+        testConcurrent(new ClientConfig()
+                .connectorProvider((jaxRsClient, configuration) -> getHttpClientConnector(jaxRsClient, HttpClient.Version.HTTP_1_1)));
     }
 
     @Test
