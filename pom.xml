@@ -28,11 +28,11 @@
         <sonar.organization>nhenneaux</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
-        <jersey.version>3.1.7</jersey.version>
-        <jetty.version>12.0.9</jetty.version>
+        <jersey.version>3.1.8</jersey.version>
+        <jetty.version>12.0.14</jetty.version>
         <jakarta.xml.version>4.0.4</jakarta.xml.version>
-        <weld-se-core.version>5.1.2.Final</weld-se-core.version>
-        <jersey-httpclient-connector.version>1.1.15</jersey-httpclient-connector.version>
+        <weld-se-core.version>5.1.3.Final</weld-se-core.version>
+        <jersey-httpclient-connector.version>1.1.18</jersey-httpclient-connector.version>
     </properties>
 
 
@@ -125,7 +125,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.10.2</version>
+            <version>5.11.2</version>
             <scope>test</scope>
         </dependency>
 
@@ -138,7 +138,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>5.11.0</version>
+            <version>5.14.1</version>
             <scope>test</scope>
         </dependency>
 
