@@ -28,10 +28,10 @@
         <sonar.organization>nhenneaux</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
-        <jersey.version>3.1.10</jersey.version>
-        <jetty.version>12.0.16</jetty.version>
+        <jersey.version>3.1.11</jersey.version>
+        <jetty.version>12.1.1</jetty.version>
         <jakarta.xml.version>4.0.5</jakarta.xml.version>
-        <weld-se-core.version>6.0.0.Final</weld-se-core.version>
+        <weld-se-core.version>6.0.3.Final</weld-se-core.version>
         <jersey-httpclient-connector.version>1.1.19</jersey-httpclient-connector.version>
     </properties>
 
