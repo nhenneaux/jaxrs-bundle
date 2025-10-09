@@ -65,3 +65,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Sonar
+        run: mvn -B -C org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        if: ${{ matrix.distribution == 'graalvm' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
