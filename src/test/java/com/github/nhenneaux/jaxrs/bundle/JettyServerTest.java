@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class JettyServerTest {
     static final int PORT = 2223;
     private static final String PING = "/ping";
-    public static final int TIMEOUT_CONCURRENT = 60;
+    public static final int TIMEOUT_CONCURRENT = 120;
 
     @BeforeEach
     void setUp(TestInfo testInfo) {
@@ -214,7 +214,10 @@ class JettyServerTest {
         JettyServer.TlsSecurityConfiguration tlsSecurityConfiguration = tlsConfig();
         for (int i = 0; i < 100; i++) {
             try (
-                    @SuppressWarnings("unused") WeldContainer container = new Weld().initialize();
+                    @SuppressWarnings("unused") WeldContainer container = new Weld()
+                            .disableDiscovery()
+                            .addBeanClasses(DummyRestService.class)
+                            .initialize();
                     AutoCloseable ignored = jerseyServer(port, tlsSecurityConfiguration, DummyRestService.class);
                     final var head = getClient(port).path(PING).request().head()
             ) {

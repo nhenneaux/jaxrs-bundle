@@ -1,0 +1,51 @@
+{
+  "resources": {
+    "includes": [
+      {
+        "pattern": "^META-INF/beans\\.xml$"
+      },
+      {
+        "pattern": "^META-INF/org\\.jboss\\.weld\\.enableUnsafeProxies$"
+      },
+      {
+        "pattern": "^META-INF/services/jakarta\\.xml\\.bind\\.JAXBContextFactory$"
+      },
+      {
+        "pattern": "^META-INF/services/org\\.jboss\\.logging\\.LoggerProvider$"
+      },
+      {
+        "pattern": "^META-INF/services/org\\.jboss\\.weld\\.bootstrap\\.api\\.Service$"
+      },
+      {
+        "pattern": "^META-INF/services/org\\.jboss\\.weld\\.environment\\.deployment\\.discovery\\.BeanArchiveHandler$"
+      },
+      {
+        "pattern": "^META-INF/services/org\\.jboss\\.weld\\.environment\\.deployment\\.discovery\\.DiscoveryStrategy$"
+      },
+      {
+        "pattern": "^META-INF/services/org\\.jboss\\.weld\\.module\\.WeldModule$"
+      },
+      {
+        "pattern": "^com/sun/research/ws/wadl/jaxb\\.index$"
+      },
+      {
+        "pattern": "^org\\.jboss\\.weld\\.bootstrap\\.properties$"
+      },
+      {
+        "pattern": "^org\\.jboss\\.weld\\.executor\\.properties$"
+      },
+      {
+        "pattern": "^org\\.jboss\\.weld\\.module\\.web\\.logging\\.ServletLogger\\.i18n\\.properties$"
+      },
+      {
+        "pattern": "^weld-build\\.properties$"
+      },
+      {
+        "pattern": "^weld\\.properties$"
+      },
+      {
+        "pattern": "^weld_1_1\\.xsd$"
+      }
+    ]
+  }
+}
