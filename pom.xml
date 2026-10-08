@@ -93,11 +93,6 @@
             <version>${weld-se-core.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.smallrye</groupId>
-            <artifactId>jandex</artifactId>
-            <version>${jandex.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.jboss.weld.servlet</groupId>
             <artifactId>weld-servlet-core</artifactId>
             <version>${weld-se-core.version}</version>
