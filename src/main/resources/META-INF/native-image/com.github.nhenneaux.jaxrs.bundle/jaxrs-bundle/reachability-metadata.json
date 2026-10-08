@@ -148,6 +148,12 @@
       "type": "org.jboss.weld.environment.se.logging.WeldSELogger_$logger_en_GB"
     },
     {
+      "type": "org.jboss.weld.generated.proxies.enterprise.event.Event$WeldEvent$Proxy$_$$_Weld$Proxy$"
+    },
+    {
+      "type": "org.jboss.weld.generated.proxies.enterprise.inject.Instance$Provider$WeldInstance$Proxy$_$$_Weld$Proxy$"
+    },
+    {
       "type": "org.jboss.weld.logging.BeanLogger_$logger",
       "methods": [
         {
