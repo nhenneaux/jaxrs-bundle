@@ -275,6 +275,9 @@
   ],
   "resources": [
     {
+      "glob": "META-INF/beans.xml"
+    },
+    {
       "glob": "META-INF/services/jakarta.xml.bind.JAXBContextFactory"
     },
     {
