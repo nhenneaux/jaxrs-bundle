@@ -56,7 +56,7 @@ jobs:
           key: "${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}"
           restore-keys: ${{ runner.os }}-m2
       - name: Build with Maven
-        run: mvn -B -C  -Dgroups='!unstableGithub' verify
+        run: mvn -B -C -Dgroups='!unstableGithub' verify
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Sonar
@@ -65,7 +65,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - name: Sonar
-        run: mvn -B -C -Pnative verify
+      - name: Graal-native
+        run: mvn -B -C -Pnative -Dgroups='!unstableGithub' verify
         if: ${{ matrix.distribution == 'graalvm' }}
 
