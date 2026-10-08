@@ -214,7 +214,10 @@ class JettyServerTest {
         JettyServer.TlsSecurityConfiguration tlsSecurityConfiguration = tlsConfig();
         for (int i = 0; i < 100; i++) {
             try (
-                    @SuppressWarnings("unused") WeldContainer container = new Weld().initialize();
+                    @SuppressWarnings("unused") WeldContainer container = new Weld()
+                            .disableDiscovery()
+                            .addBeanClasses(DummyRestService.class)
+                            .initialize();
                     AutoCloseable ignored = jerseyServer(port, tlsSecurityConfiguration, DummyRestService.class);
                     final var head = getClient(port).path(PING).request().head()
             ) {

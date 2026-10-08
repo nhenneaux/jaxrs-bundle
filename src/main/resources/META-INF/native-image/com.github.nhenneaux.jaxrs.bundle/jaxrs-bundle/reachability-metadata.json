@@ -1,6 +1,17 @@
 {
   "reflection": [
     {
+      "type": "com.github.nhenneaux.jaxrs.bundle.DummyRestService$Proxy$_$$_WeldClientProxy",
+      "fields": [
+        {
+          "name": "BEAN_ID_FIELD"
+        },
+        {
+          "name": "CONTEXT_ID_FIELD"
+        }
+      ]
+    },
+    {
       "type": "com.sun.org.apache.xerces.internal.impl.dv.xs.ExtendedSchemaDVFactoryImpl",
       "methods": [
         {
@@ -114,6 +125,85 @@
       "type": "org.glassfish.jaxb.runtime.v2.JAXBContextFactory"
     },
     {
+      "type": "org.glassfish.jersey.inject.cdi.se.bean.Ref$399876914$Proxy$_$$_WeldClientProxy",
+      "fields": [
+        {
+          "name": "BEAN_ID_FIELD"
+        },
+        {
+          "name": "CONTEXT_ID_FIELD"
+        }
+      ]
+    },
+    {
+      "type": "org.glassfish.jersey.server.internal.process.RequestProcessingContextReference$Proxy$_$$_WeldClientProxy",
+      "fields": [
+        {
+          "name": "BEAN_ID_FIELD"
+        },
+        {
+          "name": "CONTEXT_ID_FIELD"
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.bean.proxy.ProxyObject"
+    },
+    {
+      "type": "org.jboss.weld.bean.proxy.UnsafeProxyInstantiator",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.bootstrap.WeldExtension",
+      "methods": [
+        {
+          "name": "beforeBeanDiscovery",
+          "parameterTypes": [
+            "jakarta.enterprise.inject.spi.BeforeBeanDiscovery",
+            "jakarta.enterprise.inject.spi.BeanManager"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.bootstrap.api.helpers.RegistrySingletonProvider",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.configuration.spi.ExternalConfiguration"
+    },
+    {
+      "type": "org.jboss.weld.context.activator.ActivateRequestContext"
+    },
+    {
+      "type": "org.jboss.weld.context.bound.Bound"
+    },
+    {
+      "type": "org.jboss.weld.context.http.Http"
+    },
+    {
+      "type": "org.jboss.weld.context.unbound.Unbound"
+    },
+    {
+      "type": "org.jboss.weld.contexts.activator.AbstractActivateRequestContextInterceptor"
+    },
+    {
+      "type": "org.jboss.weld.contexts.activator.ActivateRequestContextInterceptor"
+    },
+    {
+      "type": "org.jboss.weld.contexts.activator.CdiRequestContextActivatorInterceptor"
+    },
+    {
       "type": "org.jboss.weld.environment.logging.CommonLogger_$logger",
       "methods": [
         {
@@ -129,6 +219,61 @@
     },
     {
       "type": "org.jboss.weld.environment.logging.CommonLogger_$logger_en_GB"
+    },
+    {
+      "type": "org.jboss.weld.environment.logging.CommonLogger_$logger_en_US"
+    },
+    {
+      "type": "org.jboss.weld.environment.logging.WeldEnvironmentLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.environment.se.Weld"
+    },
+    {
+      "type": "org.jboss.weld.environment.se.WeldSEBeanRegistrant",
+      "methods": [
+        {
+          "name": "registerWeldSEBeans",
+          "parameterTypes": [
+            "jakarta.enterprise.inject.spi.BeforeBeanDiscovery",
+            "jakarta.enterprise.inject.spi.BeanManager"
+          ]
+        },
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        },
+        {
+          "name": "registerWeldSEContexts",
+          "parameterTypes": [
+            "jakarta.enterprise.inject.spi.AfterBeanDiscovery",
+            "jakarta.enterprise.inject.spi.BeanManager"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.environment.se.beans.ParametersFactory"
+    },
+    {
+      "type": "org.jboss.weld.environment.se.bindings.Parameters"
+    },
+    {
+      "type": "org.jboss.weld.environment.se.contexts.ThreadScoped"
+    },
+    {
+      "type": "org.jboss.weld.environment.se.contexts.activators.ActivateThreadScope"
+    },
+    {
+      "type": "org.jboss.weld.environment.se.contexts.activators.ActivateThreadScopeInterceptor"
     },
     {
       "type": "org.jboss.weld.environment.se.logging.WeldSELogger_$logger",
@@ -148,10 +293,83 @@
       "type": "org.jboss.weld.environment.se.logging.WeldSELogger_$logger_en_GB"
     },
     {
+      "type": "org.jboss.weld.environment.se.logging.WeldSELogger_$logger_en_US"
+    },
+    {
+      "type": "org.jboss.weld.environment.se.threading.RunnableDecorator"
+    },
+    {
+      "type": "org.jboss.weld.environment.servlet.logging.JettyLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.environment.servlet.logging.TomcatLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.environment.servlet.logging.UndertowLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.environment.servlet.logging.WeldServletLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.events.WeldEvent"
+    },
+    {
       "type": "org.jboss.weld.generated.proxies.enterprise.event.Event$WeldEvent$Proxy$_$$_Weld$Proxy$"
     },
     {
       "type": "org.jboss.weld.generated.proxies.enterprise.inject.Instance$Provider$WeldInstance$Proxy$_$$_Weld$Proxy$"
+    },
+    {
+      "type": "org.jboss.weld.inject.WeldInstance"
+    },
+    {
+      "type": "org.jboss.weld.interceptor.proxy.LifecycleMixin"
+    },
+    {
+      "type": "org.jboss.weld.interceptor.util.proxy.TargetInstanceProxy"
+    },
+    {
+      "type": "org.jboss.weld.lite.extension.translator.logging.LiteExtensionTranslatorLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
     },
     {
       "type": "org.jboss.weld.logging.BeanLogger_$logger",
@@ -171,6 +389,20 @@
       "type": "org.jboss.weld.logging.BeanLogger_$logger_en_GB"
     },
     {
+      "type": "org.jboss.weld.logging.BeanLogger_$logger_en_US"
+    },
+    {
+      "type": "org.jboss.weld.logging.BeanManagerLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
       "type": "org.jboss.weld.logging.BootstrapLogger_$logger",
       "methods": [
         {
@@ -186,6 +418,9 @@
     },
     {
       "type": "org.jboss.weld.logging.BootstrapLogger_$logger_en_GB"
+    },
+    {
+      "type": "org.jboss.weld.logging.BootstrapLogger_$logger_en_US"
     },
     {
       "type": "org.jboss.weld.logging.ConfigurationLogger_$logger",
@@ -205,6 +440,9 @@
       "type": "org.jboss.weld.logging.ConfigurationLogger_$logger_en_GB"
     },
     {
+      "type": "org.jboss.weld.logging.ConfigurationLogger_$logger_en_US"
+    },
+    {
       "type": "org.jboss.weld.logging.ContextLogger_$logger",
       "methods": [
         {
@@ -220,6 +458,75 @@
     },
     {
       "type": "org.jboss.weld.logging.ContextLogger_$logger_en_GB"
+    },
+    {
+      "type": "org.jboss.weld.logging.ContextLogger_$logger_en_US"
+    },
+    {
+      "type": "org.jboss.weld.logging.ConversationLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.logging.ElLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.logging.EventLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.logging.InterceptorLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.logging.InvokerLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.logging.MetadataLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
     },
     {
       "type": "org.jboss.weld.logging.ReflectionLogger_$logger",
@@ -239,6 +546,42 @@
       "type": "org.jboss.weld.logging.ReflectionLogger_$logger_en_GB"
     },
     {
+      "type": "org.jboss.weld.logging.ReflectionLogger_$logger_en_US"
+    },
+    {
+      "type": "org.jboss.weld.logging.ResolutionLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.logging.SerializationLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.logging.UtilLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
       "type": "org.jboss.weld.logging.ValidatorLogger_$logger",
       "methods": [
         {
@@ -256,6 +599,9 @@
       "type": "org.jboss.weld.logging.ValidatorLogger_$logger_en_GB"
     },
     {
+      "type": "org.jboss.weld.logging.ValidatorLogger_$logger_en_US"
+    },
+    {
       "type": "org.jboss.weld.logging.VersionLogger_$logger",
       "methods": [
         {
@@ -271,6 +617,57 @@
     },
     {
       "type": "org.jboss.weld.logging.VersionLogger_$logger_en_GB"
+    },
+    {
+      "type": "org.jboss.weld.logging.VersionLogger_$logger_en_US"
+    },
+    {
+      "type": "org.jboss.weld.logging.WeldLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.logging.XmlLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.module.web.WeldWebModule",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.module.web.logging.ServletLogger_$logger",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.jboss.logging.Logger"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.weld.proxy.WeldClientProxy"
+    },
+    {
+      "type": "org.jboss.weld.proxy.WeldConstruct"
     }
   ],
   "resources": [
@@ -278,13 +675,13 @@
       "glob": "META-INF/beans.xml"
     },
     {
+      "glob": "META-INF/org.jboss.weld.enableUnsafeProxies"
+    },
+    {
       "glob": "META-INF/services/jakarta.xml.bind.JAXBContextFactory"
     },
     {
-      "glob": "com/sun/research/ws/wadl/jaxb.index"
-    },
-    {
-      "glob": "META-INF/org.jboss.weld.enableUnsafeProxies"
+      "glob": "META-INF/services/org.jboss.logging.LoggerProvider"
     },
     {
       "glob": "META-INF/services/org.jboss.weld.bootstrap.api.Service"
@@ -299,16 +696,25 @@
       "glob": "META-INF/services/org.jboss.weld.module.WeldModule"
     },
     {
+      "glob": "com/sun/research/ws/wadl/jaxb.index"
+    },
+    {
       "glob": "org.jboss.weld.bootstrap.properties"
     },
     {
       "glob": "org.jboss.weld.executor.properties"
     },
     {
+      "glob": "org.jboss.weld.module.web.logging.ServletLogger.i18n.properties"
+    },
+    {
       "glob": "weld-build.properties"
     },
     {
       "glob": "weld.properties"
+    },
+    {
+      "glob": "weld_1_1.xsd"
     }
   ]
 }
