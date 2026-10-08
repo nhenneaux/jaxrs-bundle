@@ -33,7 +33,6 @@
         <jakarta.xml.version>4.0.9</jakarta.xml.version>
         <weld-se-core.version>6.0.4.Final</weld-se-core.version>
         <jersey-httpclient-connector.version>1.2.0</jersey-httpclient-connector.version>
-        <jandex.version>3.6.0</jandex.version>
     </properties>
 
 
