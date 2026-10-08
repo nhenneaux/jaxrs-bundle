@@ -32,6 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class JettyServerTest {
     static final int PORT = 2223;
     private static final String PING = "/ping";
+    public static final int TIMEOUT_CONCURRENT = 60;
 
     @BeforeEach
     void setUp(TestInfo testInfo) {
@@ -96,34 +97,34 @@ class JettyServerTest {
     }
 
     @Test
-    @Timeout(60)
+    @Timeout(TIMEOUT_CONCURRENT)
     void testConcurrent() throws Exception {
         testConcurrent(http2ClientConfig());
     }
 
     @Test
-    @Timeout(60)
+    @Timeout(TIMEOUT_CONCURRENT)
     void testConcurrentHttp2JavaHttpClient() throws Exception {
         testConcurrent(new ClientConfig()
                 .connectorProvider((jaxRsClient, configuration) -> getHttpClientConnector(jaxRsClient, HttpClient.Version.HTTP_2)));
     }
 
     @Test
-    @Timeout(60)
+    @Timeout(TIMEOUT_CONCURRENT)
     void testConcurrentGetHttp2JavaHttpClient() throws Exception {
         testConcurrent(new ClientConfig()
                 .connectorProvider((jaxRsClient, configuration) -> getHttpClientConnector(jaxRsClient, HttpClient.Version.HTTP_2)), HttpMethod.GET, "/pingWithSleep");
     }
 
     @Test
-    @Timeout(60)
+    @Timeout(TIMEOUT_CONCURRENT)
     void testConcurrentGetDefaultJavaHttpClient() throws Exception {
         testConcurrent(new ClientConfig()
                 .connectorProvider(HttpClientConnector::new), HttpMethod.GET, "/pingWithSleep");
     }
 
     @Test
-    @Timeout(60)
+    @Timeout(TIMEOUT_CONCURRENT)
     void testConcurrentHttp1JavaHttpClient() throws Exception {
         testConcurrent(new ClientConfig()
                 .connectorProvider((jaxRsClient, configuration) -> getHttpClientConnector(jaxRsClient, HttpClient.Version.HTTP_1_1)));
@@ -207,6 +208,7 @@ class JettyServerTest {
     }
 
     @Test
+    @Timeout( 30)
     void shouldWorkInLoop() throws Exception {
         int port = PORT;
         JettyServer.TlsSecurityConfiguration tlsSecurityConfiguration = tlsConfig();
