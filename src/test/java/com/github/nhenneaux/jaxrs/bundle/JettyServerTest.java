@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class JettyServerTest {
     static final int PORT = 2223;
     private static final String PING = "/ping";
-    public static final int TIMEOUT_CONCURRENT = 120;
+    public static final int TIMEOUT_CONCURRENT = 30;
 
     @BeforeEach
     void setUp(TestInfo testInfo) {
