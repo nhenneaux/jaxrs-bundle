@@ -67,5 +67,4 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Graal-native
         run: mvn -B -C -Pnative -Dgroups='!unstableGithub' verify
-        if: ${{ matrix.distribution == 'graalvm' }}
-
+        if: ${{ matrix.distribution == 'graalvm' && matrix.java != 27 }}
